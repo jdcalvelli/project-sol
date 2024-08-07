@@ -6,19 +6,25 @@ static SCRIPT_PATH: &str = std::include_str!("script.sol");
 
 turbo::init! {
     struct GameState {
+        speaking_char: u8,
         lines: Vec<String>,
         current_line: usize,
     } = {
+        Self::new()
+    }
+}
+
+impl GameState {
+    fn new() -> Self {
         Self {
+            speaking_char: 0,
             lines: SCRIPT_PATH.split("\n")
                 .map(|line| line.to_string())
                 .collect(),
             current_line: 0,
         }
     }
-}
-
-impl GameState {
+    
     fn assess_current_line(&mut self) {
         match &self.lines[self.current_line] {
             line if line.starts_with("<<") || line.starts_with(">>") || line == "" => {
@@ -30,7 +36,12 @@ impl GameState {
                 self.evaluate_choice();
             },
             line if line.starts_with("-- end") => {
-                log!("GAME END");
+                self.speaking_char = 0;
+                //log!("GAME END");
+                // wait for button press to restart
+                if gamepad(0).select.just_pressed() {
+                    *self = GameState::new();
+                }
             }
             _ => {
                 // regular line
@@ -40,10 +51,21 @@ impl GameState {
     }
     
     fn print_current_line(&mut self) {
+        // split at the : to get character and line
+        let dialogue: Vec<String> = self.lines[self.current_line]
+            .split(":")
+            .filter(|element| *element != "")
+            .map(|element| element.trim().to_string())
+            .collect();
+        // draw char portrait
+        match dialogue[0].as_str() {
+            "LEFT" => self.speaking_char = 1,
+            "RIGHT" => self.speaking_char = 2,
+            _ => {},
+        }
+        
         // draw textbox
-        textbox::render_textbox(&self.lines, &self.current_line);
-        // draw text
-        //text!(self.lines[self.current_line].as_str(), x = 0, y = 174);
+        textbox::render_textbox(&dialogue);
         
         // move this maybe into a bespoke input checker?
         if gamepad(0).start.just_pressed() {
@@ -58,6 +80,9 @@ impl GameState {
             .filter(|element| *element != "")
             .map(|choice| choice.trim().to_string())
             .collect();
+        
+        // set speaking character to none for choices
+        self.speaking_char = 0;
         
         textbox::render_choice_textbox(&choices);
         
@@ -97,6 +122,20 @@ turbo::go! {
     sprite!("bg_0", x = 0, y = 0);
     sprite!("bg_1", x = 0, y = 0);
     sprite!("foliage", x = 0, y = 0);
+    
+    // conditional draw of correct portrait
+    // this might be able to move into the game
+    match state.speaking_char {
+        1 => {
+            // draw portrait one
+            sprite!("test_portrait_1", x = 0, y = 0);
+        },
+        2 => {
+            // draw portrait two
+            sprite!("test_portrait_2", x = 0, y = 0);
+        },
+        _ => {}
+    }
     
     GameState::assess_current_line(&mut state);
     

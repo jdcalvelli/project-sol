@@ -8,10 +8,10 @@ const TB_X: u16 = 0;
 const TB_Y: u16 = 174;
 const TB_PADDING: u16 = 8;
 
-pub fn render_textbox(lines: &Vec<String>, current_line: &usize) -> bool {
+pub fn render_textbox(dialogue: &Vec<String>) -> bool {
 	//rect!(w = TB_WIDTH, h = TB_HEIGHT, x = TB_X, y = TB_Y, color = 0x000000ff);
 	
-	text!(lines[*current_line].as_str(), x = TB_X + 2 * TB_PADDING, y = TB_Y + TB_PADDING);
+	text!(dialogue[1].as_str(), x = TB_X + 2 * TB_PADDING, y = TB_Y + TB_PADDING);
 	
 	// its rendering it
 	true
