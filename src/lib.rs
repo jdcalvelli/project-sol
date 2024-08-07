@@ -2,7 +2,7 @@ mod config;
 mod textbox;
 
 // to get the whole script file
-static SCRIPT_PATH: &str = std::include_str!("test.txt");
+static SCRIPT_PATH: &str = std::include_str!("script.sol");
 
 turbo::init! {
     struct GameState {
@@ -21,8 +21,21 @@ turbo::init! {
 impl GameState {
     fn assess_current_line(&mut self) {
         match &self.lines[self.current_line] {
-            line if line.starts_with("]*") => self.evaluate_choice(),
-            _ => self.print_current_line(),
+            line if line.starts_with("<<") || line.starts_with(">>") || line == "" => {
+                // knot, divert, or empty, so increment on to next line
+                self.current_line += 1;
+            },
+            line if line.starts_with("]>") => {
+                // choice logic
+                self.evaluate_choice();
+            },
+            line if line.starts_with("-- end") => {
+                log!("GAME END");
+            }
+            _ => {
+                // regular line
+                self.print_current_line();
+            },
         }
     }
     
@@ -39,25 +52,40 @@ impl GameState {
     }
     
     fn evaluate_choice(&mut self) {
-        // split the current line at the ]*
+        // split the current line at the ]>
         let choices: Vec<String> = self.lines[self.current_line]
-            .split("]*")
+            .split("]>")
+            .filter(|element| *element != "")
             .map(|choice| choice.trim().to_string())
             .collect();
         
         textbox::render_choice_textbox(&choices);
-        // draw choice one in one place, choice two in another
-        //text!(choices[1].as_str(), x = 0, y = 174);
-        //text!(choices[2].as_str(), x = 100, y = 174);
+        
+        // look forward to next line, split at >> to get diverts
+        let diverts: Vec<String> = self.lines[self.current_line + 1]
+            .split(">>")
+            .filter(|element| *element != "")
+            .map(|divert| divert.trim().to_string())
+            .collect();
         
         // do input check for left or right
-        if gamepad(0).up.just_pressed() {
-            // will have to update this for moving to knots eventually
-            text!("choice one picked", x = 0, y = 50);
+        if gamepad(0).left.just_pressed() {
+            // search the full script to see where << that is, get that index, set current line to that
+            let new_knot_index: usize = self.lines
+                .iter()
+                .position(|line| *line ==  format!("{}{}", "<< ", diverts[0]))
+                .unwrap();
+            
+            self.current_line = new_knot_index;
         }
-        else if gamepad(0).down.just_pressed() {
-            // will have to update this for moving to knots eventually
-            text!("choice two picked", x = 0, y = 50);
+        else if gamepad(0).right.just_pressed() {
+            // search the full script to see where << that is, get that index, set current line to that
+            let new_knot_index: usize = self.lines
+                .iter()
+                .position(|line| *line ==  format!("{}{}", "<< ", diverts[1]))
+                .unwrap();
+            
+            self.current_line = new_knot_index;
         }
     }
 }
@@ -68,6 +96,7 @@ turbo::go! {
     // i think i want to kick these out to objects type stuff at some point
     sprite!("bg_0", x = 0, y = 0);
     sprite!("bg_1", x = 0, y = 0);
+    sprite!("foliage", x = 0, y = 0);
     
     GameState::assess_current_line(&mut state);
     

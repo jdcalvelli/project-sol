@@ -1,4 +1,0 @@
-test line one
-test line two
-test line three
-]* choice 1 ]* choice 2
