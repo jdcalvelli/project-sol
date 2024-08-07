@@ -38,6 +38,8 @@ impl GameState {
             line if line.starts_with("-- end") => {
                 self.speaking_char = 0;
                 //log!("GAME END");
+                //qad finish
+                text!("fin", x = 16, y = 174 + 8);
                 // wait for button press to restart
                 if gamepad(0).select.just_pressed() {
                     *self = GameState::new();
@@ -54,7 +56,7 @@ impl GameState {
         // split at the : to get character and line
         let dialogue: Vec<String> = self.lines[self.current_line]
             .split(":")
-            .filter(|element| *element != "")
+            .filter(|&element| element != "")
             .map(|element| element.trim().to_string())
             .collect();
         // draw char portrait
@@ -77,7 +79,7 @@ impl GameState {
         // split the current line at the ]>
         let choices: Vec<String> = self.lines[self.current_line]
             .split("]>")
-            .filter(|element| *element != "")
+            .filter(|&element| element != "")
             .map(|choice| choice.trim().to_string())
             .collect();
         
@@ -89,7 +91,7 @@ impl GameState {
         // look forward to next line, split at >> to get diverts
         let diverts: Vec<String> = self.lines[self.current_line + 1]
             .split(">>")
-            .filter(|element| *element != "")
+            .filter(|&element| element != "")
             .map(|divert| divert.trim().to_string())
             .collect();
         
@@ -120,7 +122,7 @@ turbo::go! {
     
     // i think i want to kick these out to objects type stuff at some point
     sprite!("bg_0", x = 0, y = 0);
-    sprite!("bg_1", x = 0, y = 0);
+    sprite!("chairs", x = 0, y = 0);
     sprite!("foliage", x = 0, y = 0);
     
     // conditional draw of correct portrait
