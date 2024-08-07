@@ -1,4 +1,5 @@
 mod config;
+mod textbox;
 
 // to get the whole script file
 static SCRIPT_PATH: &str = std::include_str!("test.txt");
@@ -26,7 +27,10 @@ impl GameState {
     }
     
     fn print_current_line(&mut self) {
-        text!(self.lines[self.current_line].as_str());
+        // draw textbox
+        textbox::render_textbox(&self.lines, &self.current_line);
+        // draw text
+        //text!(self.lines[self.current_line].as_str(), x = 0, y = 174);
         
         // move this maybe into a bespoke input checker?
         if gamepad(0).start.just_pressed() {
@@ -40,9 +44,12 @@ impl GameState {
             .split("]*")
             .map(|choice| choice.trim().to_string())
             .collect();
+        
+        textbox::render_choice_textbox(&choices);
         // draw choice one in one place, choice two in another
-        text!(choices[1].as_str(), x = 0, y = 0);
-        text!(choices[2].as_str(), x = 100, y = 0);
+        //text!(choices[1].as_str(), x = 0, y = 174);
+        //text!(choices[2].as_str(), x = 100, y = 174);
+        
         // do input check for left or right
         if gamepad(0).up.just_pressed() {
             // will have to update this for moving to knots eventually
@@ -57,6 +64,10 @@ impl GameState {
 
 turbo::go! {
     let mut state = GameState::load();
+    
+    // i think i want to kick these out to objects type stuff at some point
+    sprite!("bg_0", x = 0, y = 0);
+    sprite!("bg_1", x = 0, y = 0);
     
     GameState::assess_current_line(&mut state);
     
