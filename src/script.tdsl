@@ -1,5 +1,6 @@
 << start
 
+# test comment
 LEFT: what's your favorite food?
 RIGHT: probably pizza, you?
 LEFT: idk lets ask the player what my favorite food is.
@@ -13,7 +14,7 @@ LEFT: idk lets ask the player what my favorite food is.
 << c1
 
 LEFT: i like watermelon.
-RIGHT: word.
+RIGHT: word, same.
 
 -- end
 

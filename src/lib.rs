@@ -2,7 +2,7 @@ mod config;
 mod textbox;
 
 // to get the whole script file
-static SCRIPT_PATH: &str = std::include_str!("script.sol");
+static SCRIPT_PATH: &str = std::include_str!("script.tdsl");
 
 turbo::init! {
     struct GameState {
@@ -27,8 +27,8 @@ impl GameState {
     
     fn assess_current_line(&mut self) {
         match &self.lines[self.current_line] {
-            line if line.starts_with("<<") || line.starts_with(">>") || line == "" => {
-                // knot, divert, or empty, so increment on to next line
+            line if line.starts_with("<<") || line.starts_with(">>") || line.starts_with("#") || line == "" => {
+                // is a passage, send, comment, or blank line, so increment on to next line
                 self.current_line += 1;
             },
             line if line.starts_with("]>") => {
@@ -36,8 +36,8 @@ impl GameState {
                 self.evaluate_choice();
             },
             line if line.starts_with("-- end") => {
+                // set character to none
                 self.speaking_char = 0;
-                //log!("GAME END");
                 //qad finish
                 text!("fin", x = 16, y = 174 + 8);
                 // wait for button press to restart
@@ -54,20 +54,20 @@ impl GameState {
     
     fn print_current_line(&mut self) {
         // split at the : to get character and line
-        let dialogue: Vec<String> = self.lines[self.current_line]
+        let statement: Vec<String> = self.lines[self.current_line]
             .split(":")
             .filter(|&element| element != "")
             .map(|element| element.trim().to_string())
             .collect();
         // draw char portrait
-        match dialogue[0].as_str() {
+        match statement[0].as_str() {
             "LEFT" => self.speaking_char = 1,
             "RIGHT" => self.speaking_char = 2,
             _ => {},
         }
         
         // draw textbox
-        textbox::render_textbox(&dialogue);
+        textbox::render_textbox(&statement);
         
         // move this maybe into a bespoke input checker?
         if gamepad(0).start.just_pressed() {
