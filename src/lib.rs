@@ -9,6 +9,7 @@ turbo::init! {
         speaking_char: u8,
         lines: Vec<String>,
         current_line: usize,
+        wait_timer: u16,
     } = {
         Self::new()
     }
@@ -22,18 +23,35 @@ impl GameState {
                 .map(|line| line.to_string())
                 .collect(),
             current_line: 0,
+            wait_timer: 0,
         }
     }
     
     fn assess_current_line(&mut self) {
         match &self.lines[self.current_line] {
-            line if line.starts_with("<<") || line.starts_with(">>") || line.starts_with("#") || line == "" => {
+            line if line.starts_with("<<") || line.starts_with("#") || line == "" => {
                 // is a passage, send, comment, or blank line, so increment on to next line
                 self.current_line += 1;
+            },
+            line if line.starts_with(">>") => {
+                // get divert text value
+                let mut divert_text = self.lines[self.current_line].chars();
+                divert_text.next();
+                divert_text.next();
+                // move to divert area!
+                let new_knot_index: usize = self.lines
+                    .iter()
+                    .position(|line| *line == format!("{}{}", "<< ", divert_text.as_str().trim()))
+                    .unwrap();
+                self.current_line = new_knot_index;
             },
             line if line.starts_with("]>") => {
                 // choice logic
                 self.evaluate_choice();
+            },
+            line if line.starts_with("!") => {
+                // command block
+                self.evaluate_command();
             },
             line if line.starts_with("-- end") => {
                 // set character to none
@@ -75,6 +93,33 @@ impl GameState {
         }
     }
     
+    fn evaluate_command(&mut self) {
+        // no one talking!
+        self.speaking_char = 0;
+        // increment wait time, like a local tick basically
+        self.wait_timer += 1;
+
+        // split at / for time
+        let command_with_arg: Vec<String> = self.lines[self.current_line]
+            .split("/")
+            .filter(|&element| element != "")
+            .map(|element| element.trim().to_string())
+            .collect();
+        let (command, arg) = (&command_with_arg[0], &command_with_arg[1]);
+
+        match command.as_str() {
+            "! WAIT" => {
+                // dont increment the line for a period of time
+                if self.wait_timer == arg.parse::<u16>().unwrap() {
+                    self.current_line += 1;
+                    // reset wait_timer
+                    self.wait_timer = 0;
+                }
+            },
+            _ => {}
+        }
+    }
+
     fn evaluate_choice(&mut self) {
         // split the current line at the ]>
         let choices: Vec<String> = self.lines[self.current_line]
