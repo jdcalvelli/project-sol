@@ -110,7 +110,7 @@ impl GameState {
         match command.as_str() {
             "! WAIT" => {
                 // dont increment the line for a period of time
-                if self.wait_timer == arg.parse::<u16>().unwrap() {
+                if self.wait_timer == arg.parse::<u16>().unwrap() * 60 {
                     self.current_line += 1;
                     // reset wait_timer
                     self.wait_timer = 0;
