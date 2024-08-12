@@ -12,9 +12,9 @@
 
 - sends can live on their own, or in conjunction with a choice
 
-### `]> [choice]` denotes a choice, the dsl expects two choices at a time
+### `]> [choice]` denotes a choice, the engine currently expect only two choices at a time
 
-- choice texts that follow ]> are written out to text boxe
+- choice texts that follow ]> are written out to text box
 
 - a choice must be followed by two diverts on the next line, in the order that corresponds to the order of choices
 
