@@ -4,11 +4,11 @@
 LEFT: what's your favorite food?
 # >> testDivert
 RIGHT: probably pizza, you?
-LEFT: let me think for a second.
-! WAIT / 2
+LEFT: let me think for a bit.
+! WAIT / 3
 LEFT: idk lets ask the player what my favorite food is.
-]> watermelon      ]> ~pizza      ]> ice cream      ]> ~cookies
->> c1              >> NULL        >> c2             >> NULL
+]> pie         ]> ~pizza      ]> ice cream      ]> ~cookies
+>> c1          >> NULL        >> c2             >> NULL
 
 -- end
 
@@ -16,7 +16,7 @@ LEFT: idk lets ask the player what my favorite food is.
 
 << c1
 
-LEFT: i like watermelon.
+LEFT: i like pie.
 RIGHT: word, same.
 
 -- end

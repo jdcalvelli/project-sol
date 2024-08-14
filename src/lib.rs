@@ -2,7 +2,7 @@ mod config;
 mod textbox;
 
 // to get the whole script file
-static SCRIPT_PATH: &str = std::include_str!("script.tdsl");
+static SCRIPT_PATH: &str = std::include_str!("../scripts/script.tdsl");
 
 turbo::init! {
     struct GameState {
@@ -199,20 +199,29 @@ impl GameState {
 turbo::go! {
     let mut state = GameState::load();
     
-    // i think i want to kick these out to objects type stuff at some point
-    sprite!("bg_0", x = 0, y = 0);
-    sprite!("chairs", x = 0, y = 0);
-    sprite!("foliage", x = 0, y = 0);
+    // static imgs
+    sprite!("bg", x = 0, y = 0);
     
-    // conditional draw of correct portrait
+    // animated imgs
+    sprite!("anim_water_grass", x = 0, y = 77, sw = 384, fps = fps::SLOW);
+    sprite!("anim_protag", x = 83, y = 64, sw = 79, fps = fps::SLOW);
+    sprite!("anim_antag", x = 215, y = 68, sw = 77, fps = fps::SLOW);
+    sprite!("anim_foliage_back", x = 0, y = 0, sw = 384, opacity = 0.65, fps = fps::SLOW);
+    sprite!("anim_foliage_front", x = 0, y = 0, sw = 384, fps = fps::SLOW);
+    
+    // conditional draw of correct portrait and bubble
     match state.speaking_char {
         1 => {
             // draw portrait one
-            sprite!("test_portrait_1", x = 0, y = 0);
+            sprite!("anim_protag_portrait", x = 12, y = 126, sw = 47, fps = fps::REALLY_SLOW);
+            // draw bubble one
+            sprite!("bubble_protag", x = 134, y = 43);
         },
         2 => {
             // draw portrait two
-            sprite!("test_portrait_2", x = 0, y = 0);
+            sprite!("anim_antag_portrait", x = 384 - 47 - 12, y = 126, sw = 47, fps = fps::REALLY_SLOW);
+            // draw bubble two
+            sprite!("bubble_antag", x = 193, y = 50);
         },
         _ => {}
     }
