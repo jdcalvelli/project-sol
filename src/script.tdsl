@@ -7,8 +7,8 @@ RIGHT: probably pizza, you?
 LEFT: let me think for a second.
 ! WAIT / 2
 LEFT: idk lets ask the player what my favorite food is.
-]> ~watermelon ]> ~ice cream ]> ~3th choice ]> ~4th choice
->> c1 >> c2 >> NULL
+]> watermelon      ]> ~pizza      ]> ice cream      ]> ~cookies
+>> c1              >> NULL        >> c2             >> NULL
 
 -- end
 

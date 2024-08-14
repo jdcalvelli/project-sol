@@ -142,6 +142,10 @@ impl GameState {
         
         // do input check for left or right
         if gamepad(0).left.just_pressed() {
+            if diverts[0] == "NULL" {
+                // pass entirely
+                return;
+            }
             // search the full script to see where << that is, get that index, set current line to that
             let new_knot_index: usize = self.lines
                 .iter()
@@ -151,10 +155,40 @@ impl GameState {
             self.current_line = new_knot_index;
         }
         else if gamepad(0).right.just_pressed() {
+            if diverts[1] == "NULL" {
+                // pass entirely
+                return;
+            }
             // search the full script to see where << that is, get that index, set current line to that
             let new_knot_index: usize = self.lines
                 .iter()
                 .position(|line| *line ==  format!("{}{}", "<< ", diverts[1]))
+                .unwrap();
+            
+            self.current_line = new_knot_index;
+        }
+        else if gamepad(0).up.just_pressed() {
+            if diverts[2] == "NULL" {
+                // pass entirely
+                return;
+            }
+            // search the full script to see where << that is, get that index, set current line to that
+            let new_knot_index: usize = self.lines
+                .iter()
+                .position(|line| *line ==  format!("{}{}", "<< ", diverts[2]))
+                .unwrap();
+            
+            self.current_line = new_knot_index;
+        }
+        else if gamepad(0).down.just_pressed() {
+            if diverts[3] == "NULL" {
+                // pass entirely
+                return;
+            }
+            // search the full script to see where << that is, get that index, set current line to that
+            let new_knot_index: usize = self.lines
+                .iter()
+                .position(|line| *line ==  format!("{}{}", "<< ", diverts[3]))
                 .unwrap();
             
             self.current_line = new_knot_index;
@@ -171,7 +205,6 @@ turbo::go! {
     sprite!("foliage", x = 0, y = 0);
     
     // conditional draw of correct portrait
-    // this might be able to move into the game
     match state.speaking_char {
         1 => {
             // draw portrait one

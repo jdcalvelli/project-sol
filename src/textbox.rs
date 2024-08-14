@@ -75,13 +75,15 @@ pub fn render_choice_textbox(choices: &Vec<String>) -> bool {
 					x = 384 / 2 + TB_PADDING, 
 					y = TB_Y + TB_PADDING
 				);
-				// render a line in the same place over top of it
-				path!(
-					start = (384 / 2 + TB_PADDING, TB_Y + TB_PADDING + 3), 
-					end = (384 - TB_PADDING, TB_Y + TB_PADDING + 3),
-					width = 1,
-					color = 0xffffff99,
-				);
+				
+				if choice.starts_with("~") {
+					path!(
+						start = (384 / 2 + TB_PADDING, TB_Y + TB_PADDING + 3), 
+						end = (384 - TB_PADDING, TB_Y + TB_PADDING + 3),
+						width = 1,
+						color = 0xffffff99,
+					);
+				}
 			},
 			3 => {
 				text!(
