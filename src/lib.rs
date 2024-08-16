@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 mod config;
 mod textbox;
 
@@ -10,6 +12,8 @@ turbo::init! {
         lines: Vec<String>,
         current_line: usize,
         wait_timer: u16,
+        tweens: HashMap<String, Tween<f32>>,
+        tween_done_once: bool,
     } = {
         Self::new()
     }
@@ -24,6 +28,11 @@ impl GameState {
                 .collect(),
             current_line: 0,
             wait_timer: 0,
+            tweens: HashMap::from([
+                ("pop_in_portrait".to_string(), Tween::new(0.)),
+                ("fade_in_portrait".to_string(), Tween::new(0.)),
+                ]),
+            tween_done_once: false,
         }
     }
     
@@ -90,6 +99,7 @@ impl GameState {
         // move this maybe into a bespoke input checker?
         if gamepad(0).start.just_pressed() {
             self.current_line += 1;
+            self.tween_done_once = false;
         }
     }
     
@@ -114,6 +124,8 @@ impl GameState {
                     self.current_line += 1;
                     // reset wait_timer
                     self.wait_timer = 0;
+
+                    self.tween_done_once = false;
                 }
             },
             _ => {}
@@ -153,6 +165,8 @@ impl GameState {
                 .unwrap();
             
             self.current_line = new_knot_index;
+
+            self.tween_done_once = false;
         }
         else if gamepad(0).right.just_pressed() {
             if diverts[1] == "NULL" {
@@ -166,6 +180,8 @@ impl GameState {
                 .unwrap();
             
             self.current_line = new_knot_index;
+
+            self.tween_done_once = false;
         }
         else if gamepad(0).up.just_pressed() {
             if diverts[2] == "NULL" {
@@ -179,6 +195,8 @@ impl GameState {
                 .unwrap();
             
             self.current_line = new_knot_index;
+
+            self.tween_done_once = false;
         }
         else if gamepad(0).down.just_pressed() {
             if diverts[3] == "NULL" {
@@ -192,6 +210,8 @@ impl GameState {
                 .unwrap();
             
             self.current_line = new_knot_index;
+
+            self.tween_done_once = false;
         }
     }
 }
@@ -212,16 +232,48 @@ turbo::go! {
     // conditional draw of correct portrait and bubble
     match state.speaking_char {
         1 => {
+
+            // parallel tween logic
+            if !state.tween_done_once {
+                state.tweens.insert("pop_in_portrait".to_string(), Tween::new(1.1).set(1.).duration(15).ease(Easing::EaseInOutSine));
+                state.tweens.insert("fade_in_portrait".to_string(), Tween::new(0.).set(1.).duration(15).ease(Easing::EaseInOutSine));
+                state.tween_done_once = true;
+            }
+
             // draw portrait one
-            sprite!("anim_protag_portrait", x = 12, y = 126, sw = 47, fps = fps::REALLY_SLOW);
+            sprite!("anim_protag_portrait", 
+                x = 12, 
+                y = 126. * state.tweens.get_mut("pop_in_portrait").unwrap().get(), 
+                sw = 47,
+                opacity = state.tweens.get_mut("fade_in_portrait").unwrap().get(),
+                fps = fps::REALLY_SLOW);
             // draw bubble one
-            sprite!("bubble_protag", x = 134, y = 43);
+            sprite!("bubble_protag",
+                x = 134, 
+                y = 43. * state.tweens.get_mut("pop_in_portrait").unwrap().get(),
+                opacity = state.tweens.get_mut("fade_in_portrait").unwrap().get());
         },
         2 => {
+
+            // parallel tween logic
+            if !state.tween_done_once {
+                state.tweens.insert("pop_in_portrait".to_string(), Tween::new(1.1).set(1.).duration(15).ease(Easing::EaseInOutSine));
+                state.tweens.insert("fade_in_portrait".to_string(), Tween::new(0.).set(1.).duration(15).ease(Easing::EaseInOutSine));
+                state.tween_done_once = true;
+            }
+
             // draw portrait two
-            sprite!("anim_antag_portrait", x = 384 - 47 - 12, y = 126, sw = 47, fps = fps::REALLY_SLOW);
+            sprite!("anim_antag_portrait", 
+                x = 384 - 47 - 12, 
+                y = 126. * state.tweens.get_mut("pop_in_portrait").unwrap().get(), 
+                sw = 47,
+                opacity = state.tweens.get_mut("fade_in_portrait").unwrap().get(),
+                fps = fps::REALLY_SLOW);
             // draw bubble two
-            sprite!("bubble_antag", x = 193, y = 50);
+            sprite!("bubble_antag", 
+                x = 193, 
+                y = 50. * state.tweens.get_mut("pop_in_portrait").unwrap().get(),
+                opacity = state.tweens.get_mut("fade_in_portrait").unwrap().get());
         },
         _ => {}
     }

@@ -7,7 +7,7 @@ use turbo::prelude::Font;
 const TB_X: u16 = 0;
 const TB_Y: u16 = 174;
 const TB_PADDING: u16 = 8;
-const CHOICE_OPTIONS: (&str, &str, &str, &str,) = ("<-", "->", "^", "v");
+const CHOICE_OPTIONS: (&str, &str, &str, &str,) = ("<", ">", "^", "v");
 
 pub fn render_textbox(dialogue: &Vec<String>) -> bool {
 	//rect!(w = TB_WIDTH, h = TB_HEIGHT, x = TB_X, y = TB_Y, color = 0x000000ff);
