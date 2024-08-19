@@ -4,7 +4,7 @@ mod config;
 mod director;
 
 // to get the whole script file
-static SCRIPT_PATH: &str = std::include_str!("../scripts/script.tdsl");
+static SCRIPT_PATH: &str = std::include_str!("../scripts/script.director");
 
 turbo::init! {
     struct GameState {
@@ -44,6 +44,11 @@ impl GameState {
 turbo::go! {
     let mut state = GameState::load();
     
+    // intro area
+    sprite!("intro_anim_sun", x = 0, y = -432, sw = 384, fps = fps::REALLY_SLOW);
+    sprite!("intro_text", x = 0, y = -324);
+    sprite!("intro_anim_clouds", x = 0, y = -216, sw = 384, fps = fps::REALLY_SLOW);
+
     // static imgs
     sprite!("bg", x = 0, y = 0);
     
@@ -85,7 +90,6 @@ turbo::go! {
                 opacity = state.tweens.get_mut("fade_in_portrait").unwrap().get());
         },
         2 => {
-
             // parallel tween logic
             if !state.tween_done_once {
                 state.tweens.insert(
@@ -114,6 +118,7 @@ turbo::go! {
         _ => {}
     }
     
+    // matching based on scene number
     match state.scene {
         0 => {
             if gamepad(0).start.just_pressed() {
@@ -123,7 +128,7 @@ turbo::go! {
                 // start the tween down
                 state.tweens.insert(
                     "tween_down_cam".to_string(), 
-                    Tween::new(-216.).set(108.).duration(120).ease(Easing::EaseInOutSine)
+                    Tween::new(-324.).set(108.).duration(120).ease(Easing::EaseInOutSine)
                 );
                 state.tween_done_once = true;
             }
@@ -137,7 +142,7 @@ turbo::go! {
 
             }
             else {
-                set_cam!(x = 192, y = -216);
+                set_cam!(x = 192, y = -324);
             }
         },
         1 => {
@@ -147,7 +152,7 @@ turbo::go! {
             if !state.tween_done_once {
                 state.tweens.insert(
                     "tween_up_cam".to_string(),
-                    Tween::new(108.).set(-216.).duration(120).ease(Easing::EaseInOutSine)
+                    Tween::new(108.).set(-324.).duration(120).ease(Easing::EaseInOutSine)
                 );
                 state.tween_done_once = true;
             }

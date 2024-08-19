@@ -1,4 +1,4 @@
-# TURBO NARRATIVE DSL README - name tbd
+# DIRECTOR - an in progress DSL for narrative games in the Turbo engine
 
 ### `<< [name]` is the name of a passage
 
@@ -6,13 +6,26 @@
 
 - sends can live on their own, or in conjunction with a choice
 
-### `]> [choice]` denotes a choice, the engine currently expect only two choices at a time
+### `]> [choice]` denotes a choice, director can handle up to 4 choices
 
 - choice texts that follow ]> are written out to text box
 
-- a choice must be followed by two diverts on the next line, in the order that corresponds to the order of choices
+- a set of choices choice must be followed by a set of sends on the next line, in the order that corresponds to the order of choices
 
-- e.g. the first divert corresponds to choice one, the second to choice two
+	- e.g. line one: `]> choice one ]> choice two`
+
+	- e.g. line two: `]> first send ]> second send`
+
+- choices can be crossed out by prepending a ~ in front of the text of the choice
+
+	- e.g. `]> ~text to be crossed out`
+
+- choices that are displayed, but not actually available to the player, or are otherwise not intended to be selectable must send to the NULL send
+
+	- e.g. `]> ~this choice shouldn't be clickable     ]> this choice should be`
+
+	- e.g. `>> NULL                                    >> choice two send`
+		- n.b. white space in between choices and/or sends are ignored, so feel free to space them out to be more legible
 
 ### `[char]: [text]` lines are statements
 
@@ -32,7 +45,7 @@
 
 - once the script game hits an -- end block, the game ends
 
-- so all passages must divert somewhere, or end the game
+- so all passages must send somewhere, or end the game
 
 ### `#` starts a comment
 
