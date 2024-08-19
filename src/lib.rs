@@ -8,6 +8,7 @@ static SCRIPT_PATH: &str = std::include_str!("../scripts/script.tdsl");
 
 turbo::init! {
     struct GameState {
+        scene: u8,
         speaking_char: u8,
         lines: Vec<String>,
         current_line: usize,
@@ -22,6 +23,7 @@ turbo::init! {
 impl GameState {
     fn new() -> Self {
         Self {
+            scene: 0,
             speaking_char: 0,
             lines: SCRIPT_PATH.split("\n")
                 .map(|line| line.to_string())
@@ -31,6 +33,8 @@ impl GameState {
             tweens: HashMap::from([
                 ("pop_in_portrait".to_string(), Tween::new(0.)),
                 ("fade_in_portrait".to_string(), Tween::new(0.)),
+                ("tween_down_cam".to_string(), Tween::new(0.)),
+                ("tween_up_cam".to_string(), Tween::new(0.)),
                 ]),
             tween_done_once: false,
         }
@@ -65,12 +69,10 @@ impl GameState {
             line if line.starts_with("-- end") => {
                 // set character to none
                 self.speaking_char = 0;
-                //qad finish
-                text!("fin", x = 16, y = 174 + 8);
-                // wait for button press to restart
-                if gamepad(0).select.just_pressed() {
-                    *self = GameState::new();
-                }
+                // reset tweens to zero
+                self.tween_done_once = false;
+                // set state to end state
+                self.scene = 2;
             }
             _ => {
                 // regular line
@@ -235,8 +237,14 @@ turbo::go! {
 
             // parallel tween logic
             if !state.tween_done_once {
-                state.tweens.insert("pop_in_portrait".to_string(), Tween::new(1.1).set(1.).duration(15).ease(Easing::EaseInOutSine));
-                state.tweens.insert("fade_in_portrait".to_string(), Tween::new(0.).set(1.).duration(15).ease(Easing::EaseInOutSine));
+                state.tweens.insert(
+                    "pop_in_portrait".to_string(), 
+                    Tween::new(1.1).set(1.).duration(15).ease(Easing::EaseInOutSine)
+                );
+                state.tweens.insert(
+                    "fade_in_portrait".to_string(), 
+                    Tween::new(0.).set(1.).duration(15).ease(Easing::EaseInOutSine)
+                );
                 state.tween_done_once = true;
             }
 
@@ -257,8 +265,13 @@ turbo::go! {
 
             // parallel tween logic
             if !state.tween_done_once {
-                state.tweens.insert("pop_in_portrait".to_string(), Tween::new(1.1).set(1.).duration(15).ease(Easing::EaseInOutSine));
-                state.tweens.insert("fade_in_portrait".to_string(), Tween::new(0.).set(1.).duration(15).ease(Easing::EaseInOutSine));
+                state.tweens.insert(
+                    "pop_in_portrait".to_string(), 
+                    Tween::new(1.1).set(1.).duration(15).ease(Easing::EaseInOutSine)
+                );
+                state.tweens.insert("fade_in_portrait".to_string(), 
+                    Tween::new(0.).set(1.).duration(15).ease(Easing::EaseInOutSine)
+                );
                 state.tween_done_once = true;
             }
 
@@ -278,7 +291,53 @@ turbo::go! {
         _ => {}
     }
     
-    GameState::assess_current_line(&mut state);
-    
+    match state.scene {
+        0 => {
+            if gamepad(0).start.just_pressed() {
+
+                state = GameState::new();
+
+                // start the tween down
+                state.tweens.insert(
+                    "tween_down_cam".to_string(), 
+                    Tween::new(-216.).set(108.).duration(120).ease(Easing::EaseInOutSine)
+                );
+                state.tween_done_once = true;
+            }
+            if state.tween_done_once {
+                set_cam!(x = 192, y = state.tweens.get_mut("tween_down_cam").unwrap().get());
+
+                if state.tweens.get_mut("tween_down_cam").unwrap().done() {
+                    state.scene = 1;
+                    state.tween_done_once = false;
+                }
+
+            }
+            else {
+                set_cam!(x = 192, y = -216);
+            }
+        },
+        1 => {
+            GameState::assess_current_line(&mut state);
+        },
+        2 => {
+            if !state.tween_done_once {
+                state.tweens.insert(
+                    "tween_up_cam".to_string(),
+                    Tween::new(108.).set(-216.).duration(120).ease(Easing::EaseInOutSine)
+                );
+                state.tween_done_once = true;
+            }
+            else {
+                set_cam!(x = 192, y = state.tweens.get_mut("tween_up_cam").unwrap().get());
+                if state.tweens.get_mut("tween_up_cam").unwrap().done() {
+                    state.scene = 0;
+                    state.tween_done_once = false;
+                }
+
+            }
+        }
+        _ => panic!("CRITICAL - No scene corresponds to this value.")
+    }    
     state.save();
 }
