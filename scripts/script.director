@@ -161,7 +161,7 @@ NOAH: No, but...well...what if they talk to me?
 MYLAN: Don't you like meeting new people? You used to.
 ! WAIT / 1
 MYLAN: What, did the city take the charisma out of the old Noah?
-NOAH: That's a little uncalled for.
+NOAH: What do you mean?
 MYLAN: I don't know...you used to have so much more conviction.
 NOAH: Hey, I can still - I can still have conviction!
 MYLAN: Doesn't seem like it.
@@ -299,13 +299,13 @@ NOAH: Who?
 MYLAN: She started seeing him a few months after we started college together.
 MYLAN: And she told me his family is loaded.
 MYLAN: Like upscale property landlord type rich.
-NOAH: Oh. Well, good for her. Is it serious for her?
+NOAH: Oh. Well, good for Carrie. Is it serious for her?
 MYLAN: Does it matter? It certainly looks like it's paying off for her.
 MYLAN: He's paying for her to bum around Greece, drink wine, and sunbathe.
 MYLAN: While we're sitting here with nothing to do.
 MYLAN: Except get bit by freaking mosquitoes.
 NOAH: Does it look like she's having a good time?
-MYLAN: She captioned it: "don't wake me up from this dream."
+MYLAN: She captioned it "don't wake me up from this dream."
 NOAH: Ah.
 MYLAN: She's definitely putting on a show for her followers, or whatever...
 NOAH: I don't remember the last time I spoke to her...
@@ -329,12 +329,14 @@ MYLAN: But we could barely see in front of us, remember?
 MYLAN: And it rained so hard that it busted up my windshield wipers?
 ! WAIT / 1
 MYLAN: Carrie kept sticking her head out the window to try and direct us!
-MYLAN: And she'd come back inside, flick rain water at us, and go right back out.
+MYLAN: And she'd come back inside...
+MYLAN: Flick rain water at us...
+MYLAN: And go right back out!
 NOAH: Yeah?
 MYLAN: Yeah! We stayed in the car the whole time once we got there...
 MYLAN: And after the rain stopped...
 MYLAN: She stuck her head out the window on the way back... 
-MYLAN: This time to dry off!
+MYLAN: But that time to dry off!
 NOAH: Hah.
 MYLAN: Hah.
 ! WAIT / 1
@@ -351,9 +353,9 @@ MYLAN: No way, Noah. I'm pulling up the posts. You were definitely there.
 ! WAIT / 2
 MYLAN: Oh, huh.
 ! WAIT / 2
-I guess you weren't. I could have sworn you were.
+MYLAN: I guess you weren't. I could have sworn you were.
 ! WAIT / 3
-MYLAN: Anyway, my point is Carrie is living my dream life.
+MYLAN: Well, my point is Carrie is living my dream life.
 MYLAN: And I need a major life upgrade and some pics to go along with it.
 ]> Life upgrade?      ]> Pics?
 >> 008a               >> 008b
@@ -405,8 +407,8 @@ MYLAN: Opinions...
 MYLAN: If you're not showing up and showing off online with everyone else...
 MYLAN: You're basically dead.
 ! WAIT / 1
-MYLAN: I mean actually alive, Kenneth.
-MYLAN: But practically dead - its survival of the socially fittest.
+MYLAN: I mean you're actually alive, Kenneth.
+MYLAN: But practically dead - it's survival of the socially fittest.
 NOAH: Kenneth?
 MYLAN: My personal FBI Agent. His name is definitely Kenneth.
 MYLAN: Or Kenny. FBI Kenny. You definitely have one, too!
@@ -503,7 +505,7 @@ NOAH: Maybe not. It's a pretty big change.
 
 # Chapter 6: Conclusion
 
->> 013
+<< 013
 MYLAN: Anything beats staying here.
 MYLAN: You're the lucky one, you know.
 MYLAN: You got out.
@@ -533,7 +535,7 @@ MYLAN: Dummy.
 
 
 
->> 014
+<< 014
 ! WAIT / 2
 MYLAN: Wait, did I like Carrie's post? Let me check.
 MYLAN: I don't want her to whine about not getting enough likes.
