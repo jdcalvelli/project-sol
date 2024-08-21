@@ -46,7 +46,8 @@ turbo::go! {
     
     // intro area
     sprite!("intro_anim_sun", x = 0, y = -432, sw = 384, fps = fps::REALLY_SLOW);
-    sprite!("intro_text", x = 0, y = -324);
+    sprite!("intro_title", x = 107, y = -432 + 8, opacity = 0.85);
+    sprite!("intro_text", x = 126, y = -324 + 64, opacity = 0.75);
     sprite!("intro_anim_clouds", x = 0, y = -216, sw = 384, fps = fps::REALLY_SLOW);
 
     // static imgs
