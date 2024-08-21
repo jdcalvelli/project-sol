@@ -1,9 +1,9 @@
 # Chapter 1: Introduction
 
 << start
-MYLAN: Too sweet - C Tier.
+MYLAN: Too sweet. C Tier.
 NOAH: Well, what about salted caramel?
-MYLAN: That's worse. It's regular caramel dropped in ocean water - D Tier.
+MYLAN: That's worse. It's regular caramel dropped in ocean water. D Tier.
 NOAH: That's a bit harsh. How about mint chocolate chip?
 MYLAN: You mean toothpaste on a cone? F Tier.
 ]> You're being unfair.       ]> I guess you're right.
@@ -52,7 +52,7 @@ NOAH: Hm? Oh. Yeah.
 << 002
 MYLAN: I'm just joking, Noah. Relax. It's cool.
 MYLAN: It's my turn anyway. Let me think...
-! WAIT / 1
+! WAIT / 3
 MYLAN: Got it! Best way to travel tier list.
 MYLAN: How do we feel about cars?
 ]> A Tier.        ]> B Tier.        ]> C Tier.      ]> D Tier.
@@ -328,11 +328,12 @@ MYLAN: And we tried to escape it by driving up there.
 MYLAN: But we could barely see in front of us, remember?
 MYLAN: And it rained so hard that it busted up my windshield wipers?
 ! WAIT / 1
-MYLAN: Carrie kept sticking her head out the window to be able to direct us!
+MYLAN: Carrie kept sticking her head out the window to try and direct us!
 MYLAN: And she'd come back inside, flick rain water at us, and go right back out.
 NOAH: Yeah?
 MYLAN: Yeah! We stayed in the car the whole time once we got there...
-MYLAN: And after the rain stopped, she stuck her head out the window on the way back... 
+MYLAN: And after the rain stopped...
+MYLAN: She stuck her head out the window on the way back... 
 MYLAN: This time to dry off!
 NOAH: Hah.
 MYLAN: Hah.
@@ -348,7 +349,9 @@ NOAH: I wasn't home over break. I stayed at school.
 NOAH: Couldn't afford the flight.
 MYLAN: No way, Noah. I'm pulling up the posts. You were definitely there.
 ! WAIT / 2
-MYLAN: Oh. I guess you weren't. I could have sworn you were.
+MYLAN: Oh, huh.
+! WAIT / 2
+I guess you weren't. I could have sworn you were.
 ! WAIT / 3
 MYLAN: Anyway, my point is Carrie is living my dream life.
 MYLAN: And I need a major life upgrade and some pics to go along with it.
@@ -365,6 +368,12 @@ MYLAN: I want to give more avant-garde thrift fashionista.
 MYLAN: That repurposes and revitalizes vintage wear.
 NOAH: I have no idea what any of that means.
 MYLAN: It's just my style palette.
+! WAIT / 2
+MYLAN: Look, you have to keep up with the times, Noah.
+MYLAN: Otherwise they'll leave you behind.
+NOAH: Just because of what clothes I wear?
+MYLAN: No, dude. Come on, it's everything.
+MYLAN: Clothes, looks, places...
 >>008
 -- end
 
@@ -379,6 +388,12 @@ MYLAN: They'd follow me around and take candids of me.
 MYLAN: Like me mid laugh with my rich boyfriend.
 MYLAN: Or looking off into the distance at the ocean.
 MYLAN: Oh, but with like a muscular hand tucking strands of hair behind my ear.
+! WAIT / 2
+MYLAN: Look, you have to keep up with the times, Noah.
+MYLAN: Otherwise they'll leave you behind.
+NOAH: Just because of what pictures I take?
+MYLAN: No, dude. Come on, it's everything.
+MYLAN: Pic, fashion, vacations...
 >> 008
 -- end
 
@@ -386,11 +401,6 @@ MYLAN: Oh, but with like a muscular hand tucking strands of hair behind my ear.
 
 << 008
 ! WAIT / 1
-MYLAN: You have to keep up with the times, Noah.
-MYLAN: Otherwise they'll leave you behind.
-NOAH: Just because of what clothes you wear?
-MYLAN: No, dude. Come on, it's everything.
-MYLAN: Clothes, looks, places...
 MYLAN: Opinions...
 MYLAN: If you're not showing up and showing off online with everyone else...
 MYLAN: You're basically dead.
@@ -398,11 +408,11 @@ MYLAN: You're basically dead.
 MYLAN: I mean actually alive, Kenneth.
 MYLAN: But practically dead - its survival of the socially fittest.
 NOAH: Kenneth?
-MYLAN: My personal FBI Agent. His name is defininitely Kenneth.
+MYLAN: My personal FBI Agent. His name is definitely Kenneth.
 MYLAN: Or Kenny. FBI Kenny. You definitely have one, too!
 NOAH: Oh.
 ! WAIT / 1
-MYLAN: At the end of the day, people need to see me travelling.
+MYLAN: At the end of the day, people need to see me traveling.
 MYLAN: See me looking cute.
 MYLAN: So they can know that I'm living the dream.
 MYLAN: So I can be someone they admire. Someone they're a little jealous of.
@@ -420,10 +430,10 @@ MYLAN: And that's why I'm trying to get you back up to speed!
 MYLAN: Help you practice your hot takes.
 MYLAN: Which you're welcome for, by the way.
 NOAH: Thanks. I guess.
-MYLAN: Still zero enthusiasm.
+MYLAN: Ugh, still giving zero enthusiasm.
 MYLAN: Are you like this with all your new college friends?
 NOAH: Like what?
-MYLAN: Like oblivious? Detatched?
+MYLAN: Like oblivious? Detached?
 MYLAN: I would've thought they'd rip right through you.
 MYLAN: Cities move real fast.
 MYLAN: ...That's what they say online, anyway.
@@ -435,7 +445,7 @@ MYLAN: Trends are over before you can even jump on them...
 
 
 << 010
-NOAH: My new friends don't care. They're not into that stuff. They're just chill.
+NOAH: My new friends don't care. They're not into that stuff.
 MYLAN: I think you have actual blinders on.
 MYLAN: Everyone cares about this stuff.
 NOAH: Okay. If you say so.
@@ -451,7 +461,7 @@ MYLAN: And that's really cool! People love that type.
 MYLAN: You just need to show it online more. That's all.
 ! WAIT / 3
 MYLAN: Hello? Earth to Noah?
-]> ~I'm terrified of what people think. ]> ~I dont like to pretend. ]> ~I don't want to be online. ]> Yeah. You're right.
+]> ~I'm terrified of what people think. ]> ~I don't like to pretend. ]> ~I don't want to be online. ]> Yeah. You're right.
 >> NULL >> NULL >> NULL >> 011
 -- end
 
@@ -479,21 +489,21 @@ MYLAN: You think I'd make it big there? Be happy, and all that?
 
 << 012a
 NOAH: Maybe. You might like it there.
->> 012
+>> 013
 -- end
 
 
 
 << 012b
 NOAH: Maybe not. It's a pretty big change.
->> 012
+>> 013
 -- end
 
 
 
 # Chapter 6: Conclusion
 
->> 012
+>> 013
 MYLAN: Anything beats staying here.
 MYLAN: You're the lucky one, you know.
 MYLAN: You got out.
@@ -518,12 +528,12 @@ NOAH: That's a major over-SIGHT.
 NOAH: Get it?
 ! WAIT / 1
 MYLAN: Dummy.
->> 013
+>> 014
 -- end
 
 
 
->> 013
+>> 014
 ! WAIT / 2
 MYLAN: Wait, did I like Carrie's post? Let me check.
 MYLAN: I don't want her to whine about not getting enough likes.
