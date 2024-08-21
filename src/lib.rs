@@ -1,10 +1,18 @@
 use std::collections::HashMap;
 
-mod config;
 mod director;
 
 // to get the whole script file
 static SCRIPT_PATH: &str = std::include_str!("../scripts/script.director");
+
+turbo::cfg! {r#"
+    name = "project-sol"
+    version = "0.3.1"
+    author = "folie a deux"
+    description = "write something here eventually"
+    [settings]
+    resolution = [384, 216]
+"#}
 
 turbo::init! {
     struct GameState {
