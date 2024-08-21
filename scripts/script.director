@@ -1,6 +1,7 @@
 # Chapter 1: Introduction
 
 << start
+! WAIT / 2
 MYLAN: Too sweet. C Tier.
 NOAH: Well, what about salted caramel?
 MYLAN: That's worse. It's regular caramel dropped in ocean water. D Tier.
@@ -20,11 +21,11 @@ MYLAN: Did you expect any different?
 NOAH: I hoped that a year of college would have softened you around the edges.
 MYLAN: Hah, yeah right. College here is basically high school all over again.
 MYLAN: ...My commute just takes 20 minutes longer now.
-! WAIT / 1
+! WAIT / 3
 MYLAN: Nothing like how you've been living, city boy.
-! WAIT / 1
+! WAIT / 3
 NOAH: Hm? Oh. Yeah.
-! WAIT / 2
+! WAIT / 4
 >> 002
 -- end
 
@@ -41,9 +42,9 @@ MYLAN: Everyone knows good taste goes out the window in the city.
 MYLAN: It gets replaced with plant bases and vitamins.
 NOAH: Gluten free plant bases.
 MYLAN: Don't you agree?
-! WAIT / 1
+! WAIT / 3
 NOAH: Hm? Oh. Yeah.
-! WAIT / 2
+! WAIT / 4
 >> 002
 -- end
 
@@ -52,7 +53,7 @@ NOAH: Hm? Oh. Yeah.
 << 002
 MYLAN: I'm just joking, Noah. Relax. It's cool.
 MYLAN: It's my turn anyway. Let me think...
-! WAIT / 3
+! WAIT / 4
 MYLAN: Got it! Best way to travel tier list.
 MYLAN: How do we feel about cars?
 ]> A Tier.        ]> B Tier.        ]> C Tier.      ]> D Tier.
@@ -114,7 +115,7 @@ NOAH: D Tier. Car rides are the worst.
 MYLAN: Okay, but why?
 NOAH: Well, I don't like driving.
 NOAH: I guess they can get boring...
-! WAIT / 2
+! WAIT / 4
 MYLAN: Good thing you aren't going to school to become a lawyer.
 NOAH: I mean, I guess I think there are better opt-
 MYLAN: Sure, sure. Whatever you say. Now trains - go!
@@ -159,7 +160,7 @@ NOAH: But I don't love riding alone and getting stuck with a stranger...
 MYLAN: Do you have something against strangers?
 NOAH: No, but...well...what if they talk to me?
 MYLAN: Don't you like meeting new people? You used to.
-! WAIT / 1
+! WAIT / 3
 MYLAN: What, did the city take the charisma out of the old Noah?
 NOAH: What do you mean?
 MYLAN: I don't know...you used to have so much more conviction.
@@ -252,13 +253,13 @@ NOAH: Well...rollerskates...
 
 << 005
 NOAH: They're definitely an exciting option...
-! WAIT / 1
+! WAIT / 2
 NOAH: Faster than walking...
-! WAIT / 1
+! WAIT / 2
 NOAH: But I don't see myself crossing state lines on rollerskates...
-! WAIT / 1
+! WAIT / 2
 NOAH: And I'm not great at skating in the first place...
-! WAIT / 1
+! WAIT / 2
 NOAH: With all that in mind, I'm not sure where I'd place-
 MYLAN: Oh my god. No freaking way.
 NOAH: Huh?
@@ -312,7 +313,7 @@ NOAH: I don't remember the last time I spoke to her...
 MYLAN: Flaunting around, showing off how great her life is...
 NOAH: She probably looks much different now...
 MYLAN: Nothing about her is real these days. I can promise you that.
-! WAIT / 2
+! WAIT / 3
 MYLAN: The real Carrie is a weirdo.
 MYLAN: Don't you remember over break when we went to Cedar Point?
 ]> Cedar Point?
@@ -327,7 +328,7 @@ MYLAN: Yeah - there was this crazy rain storm...
 MYLAN: And we tried to escape it by driving up there.
 MYLAN: But we could barely see in front of us, remember?
 MYLAN: And it rained so hard that it busted up my windshield wipers?
-! WAIT / 1
+! WAIT / 3
 MYLAN: Carrie kept sticking her head out the window to try and direct us!
 MYLAN: And she'd come back inside...
 MYLAN: Flick rain water at us...
@@ -339,20 +340,20 @@ MYLAN: She stuck her head out the window on the way back...
 MYLAN: But that time to dry off!
 NOAH: Hah.
 MYLAN: Hah.
-! WAIT / 1
-MYLAN: And now she's in Mykonos.
-! WAIT / 1
-MYLAN: And I still need to get my wipers fixed.
 ! WAIT / 2
+MYLAN: And now she's in Mykonos.
+! WAIT / 2
+MYLAN: And I still need to get my wipers fixed.
+! WAIT / 4
 MYLAN: You really don't remember any of this, do you?
 NOAH: I...don't think I was there for that.
 MYLAN: What do you mean, of course you were, we were all-
 NOAH: I wasn't home over break. I stayed at school.
 NOAH: Couldn't afford the flight.
 MYLAN: No way, Noah. I'm pulling up the posts. You were definitely there.
-! WAIT / 2
+! WAIT / 3
 MYLAN: Oh, huh.
-! WAIT / 2
+! WAIT / 3
 MYLAN: I guess you weren't. I could have sworn you were.
 ! WAIT / 3
 MYLAN: Well, my point is Carrie is living my dream life.
@@ -370,7 +371,7 @@ MYLAN: I want to give more avant-garde thrift fashionista.
 MYLAN: That repurposes and revitalizes vintage wear.
 NOAH: I have no idea what any of that means.
 MYLAN: It's just my style palette.
-! WAIT / 2
+! WAIT / 3
 MYLAN: Look, you have to keep up with the times, Noah.
 MYLAN: Otherwise they'll leave you behind.
 NOAH: Just because of what clothes I wear?
@@ -390,7 +391,7 @@ MYLAN: They'd follow me around and take candids of me.
 MYLAN: Like me mid laugh with my rich boyfriend.
 MYLAN: Or looking off into the distance at the ocean.
 MYLAN: Oh, but with like a muscular hand tucking strands of hair behind my ear.
-! WAIT / 2
+! WAIT / 3
 MYLAN: Look, you have to keep up with the times, Noah.
 MYLAN: Otherwise they'll leave you behind.
 NOAH: Just because of what pictures I take?
@@ -402,23 +403,23 @@ MYLAN: Pic, fashion, vacations...
 
 
 << 008
-! WAIT / 1
+! WAIT / 3
 MYLAN: Opinions...
 MYLAN: If you're not showing up and showing off online with everyone else...
 MYLAN: You're basically dead.
-! WAIT / 1
+! WAIT / 3
 MYLAN: I mean you're actually alive, Kenneth.
 MYLAN: But practically dead - it's survival of the socially fittest.
 NOAH: Kenneth?
 MYLAN: My personal FBI Agent. His name is definitely Kenneth.
 MYLAN: Or Kenny. FBI Kenny. You definitely have one, too!
 NOAH: Oh.
-! WAIT / 1
+! WAIT / 3
 MYLAN: At the end of the day, people need to see me traveling.
 MYLAN: See me looking cute.
 MYLAN: So they can know that I'm living the dream.
 MYLAN: So I can be someone they admire. Someone they're a little jealous of.
-! WAIT / 1
+! WAIT / 3
 MYLAN: You get what I mean?
 ]> Yeah, totally. ]> ~No, actually. I don't.
 >> 009            >> NULL
@@ -451,17 +452,17 @@ NOAH: My new friends don't care. They're not into that stuff.
 MYLAN: I think you have actual blinders on.
 MYLAN: Everyone cares about this stuff.
 NOAH: Okay. If you say so.
-! WAIT / 2
+! WAIT / 4
 MYLAN: Oh, come on. Don't get in a mood, Noah.
 MYLAN: I'm just trying to help.
-! WAIT / 1
+! WAIT / 3
 MYLAN: You're the cool, nonchalant type, you know?
 MYLAN: The type of guy that's relaxed all the time.
 MYLAN: Not worried about what people think.
 MYLAN: And that's really cool! People love that type.
-! WAIT / 1
+! WAIT / 2
 MYLAN: You just need to show it online more. That's all.
-! WAIT / 3
+! WAIT / 4
 MYLAN: Hello? Earth to Noah?
 ]> ~I'm terrified of what people think. ]> ~I don't like to pretend. ]> ~I don't want to be online. ]> Yeah. You're right.
 >> NULL >> NULL >> NULL >> 011
@@ -474,7 +475,7 @@ NOAH: Yeah. You're right.
 NOAH: I should post more. Keep up the brand, right?
 MYLAN: Exactly. You've got a perfect face for Instagram.
 MYLAN: But if you tell anyone I told you that, I'll kill you.
-! WAIT / 1
+! WAIT / 3
 MYLAN: Just kidding, Kenneth!
 NOAH: FBI Kenny needs to learn how to take a joke.
 MYLAN: Maybe he can, but I'm not taking any risks here.
@@ -512,23 +513,23 @@ MYLAN: You got out.
 MYLAN: You have a chance to live out a dream.
 MYLAN: All I do here is drive back and forth.
 MYLAN: The only exciting thing is seeing the world through my phone.
-! WAIT / 1
+! WAIT / 3
 MYLAN: And when I'm bored of that, just laying down and staring at the sun.
-! WAIT / 2
+! WAIT / 3
 NOAH: When we were kids, it felt nice. Just staring at the sun.
 MYLAN: Yeah.
 MYLAN: I mean, it was nice then.
 MYLAN: Nice to do as kids, lame to do as adults.
-! WAIT / 2
+! WAIT / 3
 NOAH: I can't believe we didn't blind ourselves.
 MYLAN: You'd have thought humans would evolved to that point.
 MYLAN: Where we could stare at the sun, and be fine, you know?
 NOAH: Hm. Yeah.
-! WAIT / 1
+! WAIT / 3
 NOAH: That's a major over-SIGHT.
-! WAIT / 1
+! WAIT / 3
 NOAH: Get it?
-! WAIT / 1
+! WAIT / 3
 MYLAN: Dummy.
 >> 014
 -- end
@@ -536,7 +537,7 @@ MYLAN: Dummy.
 
 
 << 014
-! WAIT / 2
+! WAIT / 4
 MYLAN: Wait, did I like Carrie's post? Let me check.
 MYLAN: I don't want her to whine about not getting enough likes.
 MYLAN: Even in Mykonos, she'd find some reason to complain.
