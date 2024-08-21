@@ -9,8 +9,8 @@ pub fn print_current_line(state:&mut GameState) {
         .collect();
     // draw char portrait
     match statement[0].as_str() {
-        "LEFT" => state.speaking_char = 1,
-        "RIGHT" => state.speaking_char = 2,
+        "NOAH" => state.speaking_char = 1,
+        "MYLAN" => state.speaking_char = 2,
         _ => {},
     }
     
