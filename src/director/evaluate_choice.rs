@@ -20,8 +20,10 @@ pub fn evaluate_choice(state:&mut GameState) {
         .map(|divert| divert.trim().to_string())
         .collect();
     
+    // NUMBER OF CHOICES DETERMINES NUMBER OF IF STATEMENTS?
+
     // do input check for left or right
-    if turbo::prelude::gamepad(0).left.just_pressed() {
+    if turbo::prelude::gamepad(0).left.just_pressed() && choices.len() >= 1 {
         if diverts[0] == "NULL" {
             // pass entirely
             return;
@@ -36,7 +38,7 @@ pub fn evaluate_choice(state:&mut GameState) {
 
         state.tween_done_once = false;
     }
-    else if turbo::prelude::gamepad(0).right.just_pressed() {
+    else if turbo::prelude::gamepad(0).right.just_pressed() && choices.len() >= 2 {
         if diverts[1] == "NULL" {
             // pass entirely
             return;
@@ -51,7 +53,7 @@ pub fn evaluate_choice(state:&mut GameState) {
 
         state.tween_done_once = false;
     }
-    else if turbo::prelude::gamepad(0).up.just_pressed() {
+    else if turbo::prelude::gamepad(0).up.just_pressed() && choices.len() >= 3 {
         if diverts[2] == "NULL" {
             // pass entirely
             return;
@@ -66,7 +68,7 @@ pub fn evaluate_choice(state:&mut GameState) {
 
         state.tween_done_once = false;
     }
-    else if turbo::prelude::gamepad(0).down.just_pressed() {
+    else if turbo::prelude::gamepad(0).down.just_pressed() && choices.len() >= 4 {
         if diverts[3] == "NULL" {
             // pass entirely
             return;

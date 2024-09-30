@@ -6,10 +6,10 @@ mod director;
 static SCRIPT_PATH: &str = std::include_str!("../scripts/script.director");
 
 turbo::cfg! {r#"
-    name = "project-sol"
-    version = "0.3.1"
-    author = "folie a deux"
-    description = "write something here eventually"
+    name = "staring at the sun"
+    version = "0.3.2"
+    author = "jd calvelli and devinne moses"
+    description = "a game about people"
     [settings]
     resolution = [384, 216]
 "#}
@@ -130,7 +130,7 @@ turbo::go! {
     // matching based on scene number
     match state.scene {
         0 => {
-            if gamepad(0).start.just_pressed() {
+            if gamepad(0).start.just_pressed() && state.tween_done_once == false{
 
                 state = GameState::new();
 
